@@ -1,6 +1,6 @@
 # 🧠 Gerenciador de Tarefas
 
-Um projeto simples e funcional de gerenciamento de tarefas feito com **React**, **JavaScript** e **Tailwind**. Ideal para praticar hooks, estado local e manipulação de URL com `react-router-dom`.
+Um projeto simples e funcional de gerenciamento de tarefas feito com **React**, **JavaScript** e estilizado com **Tailwind**. Ideal para praticar hooks, estado local e manipulação de URL com `react-router-dom`.
 
 ---
 
