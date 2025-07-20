@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import TextArea from '../components/TextArea'
+import { toast, ToastContainer } from "react-toastify";
 
 function TaskPage() {
   const navigate = useNavigate()
@@ -60,8 +61,8 @@ function TaskPage() {
 
   function handleGoBack() {
     if (hasChanges) {
-      const confirmLeave = window.confirm("Você tem alterações não salvas. Deseja sair?")
-      if (!confirmLeave) return
+      toast.warning("Você tem alterações não salvas!")
+      return
     }
     navigate(-1)
   }
@@ -129,6 +130,7 @@ function TaskPage() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }
