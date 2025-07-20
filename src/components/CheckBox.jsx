@@ -1,8 +1,8 @@
 import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
 
-export default function ControlledCheckbox() {
-  const [checked, setChecked] = useState(true);
+export function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -12,7 +12,8 @@ export default function ControlledCheckbox() {
     <Checkbox
       checked={checked}
       onChange={handleChange}
-      slotProps={{ 'aria-label': 'controlled' }}
+      color='default'
+      slotProps={{ 'aria-label': 'controlled' ,}}
     />
   );
 }

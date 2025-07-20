@@ -2,17 +2,13 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
-import ControlledCheckbox from './CheckBox';
+import { ControlledCheckbox } from './CheckBox';
 
-function Tasks({tasks, onTaskClick, onDeleteTaskClick}) {
-  const navigate = useNavigate()
+function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
+  const navigate = useNavigate();
 
   function onSeeDetailsClick(task) {
-    const query = new URLSearchParams()
-    query.set("id", task.id)
-    query.set("title", task.title)
-    query.set("description", task.description)
-    navigate(`/task?${query.toString()}`)
+    navigate(`/task/${task.id}`);
   }
 
   return (
@@ -26,26 +22,26 @@ function Tasks({tasks, onTaskClick, onDeleteTaskClick}) {
           <li key={task.id} className="flex gap-2">
             <div
               onClick={() => onTaskClick(task.id)}
-              className="flex items-center bg-slate-400 text-white p-2 rounded-md w-full cursor-pointer hover:bg-slate-500"
+              className="flex items-center bg-slate-400 text-white p-2 rounded-md w-full"
             >
-              <ControlledCheckbox />
-            <span>
-              {task.title}
-            </span>
+              <ControlledCheckbox checked={task.isCompleted} />
+              <span>
+                {task.title}
+              </span>
             </div>
 
-            <Button onClick={() => {onSeeDetailsClick(task)}}>
+            <Button title="Detalhes" onClick={() => onSeeDetailsClick(task)}>
               <ArrowRightIcon />
             </Button>
 
-            <Button onClick={() => onDeleteTaskClick(task.id)}>
+            <Button title="Deletar" onClick={() => onDeleteTaskClick(task.id)}>
               <DeleteOutlineIcon />
             </Button>
           </li>
-         ))
-       )}
-     </ul>
-   )
+        ))
+      )}
+    </ul>
+  );
 }
 
-export default Tasks
+export default Tasks;

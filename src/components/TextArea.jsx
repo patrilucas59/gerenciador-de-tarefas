@@ -1,8 +1,8 @@
 function  TextArea(props) {
   return (
     <textarea 
-    className="w-full p-2 border border-slate-700 rounded-md outline-slate-400 resize-none"
-      {...props}
+      className='w-full border border-slate-300 outline-slate-400 px-4 py-2 rounded-md'
+    {...props}
     />
   )
 }

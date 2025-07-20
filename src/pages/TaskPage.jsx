@@ -1,14 +1,15 @@
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Title from "../components/Title";
-import TextArea from "../components/TextArea";
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from "react";
+import Input from "../components/Input";
+import TextArea from '../components/TextArea'
 
 function TaskPage() {
   const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
+  const { id } = useParams()
 
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -16,31 +17,62 @@ function TaskPage() {
   const [originalDescription, setOriginalDescription] = useState("")
   const [isEditing, setIsEditing] = useState(false)
 
-  useEffect(() => {
-    const initialTitle = searchParams.get("title") || localStorage.getItem("taskTitle") || ""
-    const initialDescription = searchParams.get("description") || localStorage.getItem("taskDescription") || ""
+  const [tasks, setTasks] = useState([])
 
-    setTitle(initialTitle)
-    setDescription(initialDescription)
-    setOriginalTitle(initialTitle)
-    setOriginalDescription(initialDescription)
-  }, [searchParams])
+  useEffect(() => {
+    const stored = localStorage.getItem("tasks")
+    const parsed = stored ? JSON.parse(stored) : []
+
+    setTasks(parsed)
+
+    const task = parsed.find((event) => event.id === id)
+    if (!task) {
+      alert("Tarefa não encontrada.")
+      navigate("/")
+      return
+    }
+
+    setTitle(task.title)
+    setDescription(task.description)
+    setOriginalTitle(task.title)
+    setOriginalDescription(task.description)
+  }, [id, navigate])
 
   const hasChanges = title !== originalTitle || description !== originalDescription
 
   function handleSave() {
-    localStorage.setItem("taskTitle", title)
-    localStorage.setItem("taskDescription", description)
-    setOriginalTitle(title)
-    setOriginalDescription(description)
+    const trimmedTitle = title.trim()
+    const trimmedDescription = description.trim()
+
+    if (!trimmedTitle || !trimmedDescription) return
+
+    const updatedTasks = tasks.map((task) =>
+      task.id === id
+        ? { ...task, title: trimmedTitle, description: trimmedDescription }
+        : task
+    )
+
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks))
+    setTasks(updatedTasks)
+
+    setOriginalTitle(trimmedTitle)
+    setOriginalDescription(trimmedDescription)
     setIsEditing(false)
+  }
+
+  function handleGoBack() {
+    if (hasChanges) {
+      const confirmLeave = window.confirm("Você tem alterações não salvas. Deseja sair?")
+      if (!confirmLeave) return
+    }
+    navigate(-1)
   }
 
   return (
     <div className="h-screen w-screen bg-slate-600 p-6 flex justify-center">
       <div className="w-[500px] space-y-4">
         <div className="flex justify-center relative mb-6 text-slate-100">
-          <button onClick={() => navigate(-1)} className="absolute left-0 top-0 bottom-0">
+          <button onClick={handleGoBack} className="absolute left-0 top-0 bottom-0" title="Voltar">
             <ArrowBackIcon />
           </button>
           <Title>Detalhes da Tarefa</Title>
@@ -76,7 +108,7 @@ function TaskPage() {
 
           <div>
             {isEditing ? (
-              <TextArea
+              <Input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 rows={1}
