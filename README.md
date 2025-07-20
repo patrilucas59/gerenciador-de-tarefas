@@ -31,5 +31,3 @@ Um projeto simples e funcional de gerenciamento de tarefas feito com **React**, 
 <img width="1425" height="706" alt="screenshot (11)" src="https://github.com/user-attachments/assets/a84cfa1f-5c02-4948-afe9-7a6524a260b1" />
 
 ---
-
-## Em breve novas features...
