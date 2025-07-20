@@ -9,6 +9,7 @@ Um projeto simples e funcional de gerenciamento de tarefas feito com **React**, 
 - Adicionar tarefas com título e descrição
 - Marcar/desmarcar tarefas como concluídas
 - Remover tarefas
+- Editar tareas já criadas
 
 ---
 
