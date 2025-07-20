@@ -25,11 +25,9 @@ function TaskPage() {
 
     setTasks(parsed)
 
-    const task = parsed.find((event) => event.id === id)
+    const task = parsed.find((task) => task.id === id)
     if (!task) {
-      alert("Tarefa não encontrada.")
-      navigate("/")
-      return
+      throw new Response("Not Found", { status: 404 })
     }
 
     setTitle(task.title)
