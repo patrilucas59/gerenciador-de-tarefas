@@ -4,7 +4,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import TaskPage from './pages/TaskPage'
-import TaskNotFound from './components/404NotFound'
+import TaskNotFound from './pages/TaskNotFound'
 
 const router = createBrowserRouter([
   {

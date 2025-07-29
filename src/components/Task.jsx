@@ -12,7 +12,7 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
   }
 
   return (
-    <ul className="space-y-4 p-6 bg-slate-200 rounded-md shadow">
+    <ul className="space-y-4 p-6 bg-slate-200 rounded-md shadow overflow-y-auto max-h-96">
       {tasks.length === 0 ? (
         <p className="text-slate-500 text-center">
           Organize seu dia. Comece criando novas <b>tarefas!</b>
