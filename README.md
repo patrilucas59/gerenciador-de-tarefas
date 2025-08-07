@@ -1,4 +1,4 @@
-# 🧠 Gerenciador de Tarefas
+# 🧠 Gerenciador de Tarefas | NoteMe
 
 Um projeto simples e funcional de gerenciamento de tarefas feito com **React**, **JavaScript** e estilizado com **Tailwind**. Ideal para praticar hooks, estado local e manipulação de URL com `react-router-dom`.
 
