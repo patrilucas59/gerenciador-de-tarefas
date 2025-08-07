@@ -125,7 +125,9 @@ function TaskPage() {
                 rows={4}
               />
             ) : (
-              <p className="text-slate-600">{description}</p>
+              <p className="text-slate-600 min-h-[100px] max-h-[300px] overflow-y-auto whitespace-pre-wrap">
+                {description}
+              </p>
             )}
           </div>
         </div>
