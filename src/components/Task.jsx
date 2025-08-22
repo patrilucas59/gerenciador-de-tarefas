@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { ControlledCheckbox } from './CheckBox';
 
-function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
+function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
   const navigate = useNavigate();
 
   const handleSeeDetails = (taskId) => {
@@ -36,7 +36,10 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
               onClick={() => onTaskClick(task.id)}
               className={taskItemClasses}
               >
-              <ControlledCheckbox checked={task.isCompleted} />
+              <ControlledCheckbox 
+                checked={task.isCompleted} 
+                onChange={() => onToggleTask(task.id)}    
+              />
               <span>
                 {task.title}
               </span>

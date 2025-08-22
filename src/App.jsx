@@ -41,6 +41,14 @@ function onAddTaskSubmit (title, description) {
 
 }
 
+const handleToggleTask = (taskId) => {
+  setTasks(prevTasks => 
+    prevTasks.map(task => 
+      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+    )
+  )
+}
+
   return (
     <div className='w-screen h-screen dark:bg-gray-700 white: bg-slate-600 flex justify-center p-6'>
       <div className='w-[500px] space-y-4'>
@@ -53,7 +61,8 @@ function onAddTaskSubmit (title, description) {
           tasks={tasks} 
           onTaskClick={onTaskClick} 
           onDeleteTaskClick={onDeleteTaskClick} 
-          />
+          onToggleTask={handleToggleTask}
+        />
         <ToastContainer />
       </div>
     </div>
