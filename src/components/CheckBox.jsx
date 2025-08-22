@@ -13,7 +13,7 @@ export function ControlledCheckbox() {
       checked={checked}
       onChange={handleChange}
       color='default'
-      slotProps={{ 'aria-label': 'controlled' ,}}
+      slotProps={{ 'aria-label': 'controlled' }}
     />
   );
 }

@@ -42,10 +42,10 @@ function onAddTaskSubmit (title, description) {
 }
 
   return (
-    <div className='w-screen h-screen bg-slate-600 flex justify-center p-6'>
+    <div className='w-screen h-screen dark:bg-gray-700 white: bg-slate-600 flex justify-center p-6'>
       <div className='w-[500px] space-y-4'>
         <Title>
-          NoteMe
+          NoteMe - To Do List
         </Title>
         <AddTasks onAddTaskSubmit={onAddTaskSubmit} />
 

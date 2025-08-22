@@ -68,8 +68,8 @@ function TaskPage() {
   }
 
   return (
-    <div className="h-screen w-screen bg-slate-600 p-6 flex justify-center">
-      <div className="w-[500px] space-y-4">
+    <div className="h-screen w-screen dark:bg-gray-700 bg-slate-600 p-6 flex justify-center overflow-hidden">
+      <div className="w-[600px] space-y-4">
         <div className="flex justify-center relative mb-6 text-slate-100">
           <button onClick={handleGoBack} className="absolute left-0 top-0 bottom-0" title="Voltar">
             <ArrowBackIcon />
@@ -77,7 +77,17 @@ function TaskPage() {
           <Title>Detalhes da Tarefa</Title>
         </div>
 
-        <div className="bg-slate-200 p-4 rounded-md relative space-y-6">
+        <div 
+          className="
+            bg-slate-200 p-4 rounded-md relative 
+            space-y-6 
+            min-h-[100px] max-h-[600px] 
+            overflow-y-auto 
+            scrollbar-thin scrollbar-thumb-slate-500 scrollbar-track-transparent 
+            hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded-lg 
+            transition-all
+          "
+        >
           {isEditing ? (
             hasChanges ? (
               <button
@@ -113,7 +123,9 @@ function TaskPage() {
                 rows={1}
               />
             ) : (
-              <h2 className="text-xl font-bold text-slate-600">{title}</h2>
+              <h2 className="text-xl font-bold text-slate-600 min-h-[50px] max-h-[500px] overflow-hidden text-ellipsis whitespace-pre-wrap">
+                {title}
+              </h2>
             )}
           </div>
 
@@ -125,7 +137,7 @@ function TaskPage() {
                 rows={4}
               />
             ) : (
-              <p className="text-slate-600 min-h-[100px] max-h-[300px] overflow-y-auto whitespace-pre-wrap">
+              <p className="text-slate-600 overflow-y-auto whitespace-pre-wrap min-h-[100px] max-h-[500px] overflow-hidden text-ellipsis">
                 {description}
               </p>
             )}
