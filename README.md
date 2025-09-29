@@ -31,3 +31,24 @@ A simple and functional project of to-do list, build with **React**, **JavaScrip
 <img width="1425" height="706" alt="screenshot (11)" src="https://github.com/user-attachments/assets/a84cfa1f-5c02-4948-afe9-7a6524a260b1" />
 
 ---
+
+## How to run locally
+
+Clone the project and install the dependencies:
+
+```bash
+# Clone the repository
+git clone https://github.com/patrilucas59/gerenciador-de-tarefas.git
+
+# Enter the project folder
+cd gerenciador-de-tarefas
+
+# Install the dependencies
+yarn install
+# or
+npm install
+
+# Run the development server:
+yarn dev
+# or
+npm run dev
