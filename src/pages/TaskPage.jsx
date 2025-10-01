@@ -3,6 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Title from "../components/Title";
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
 import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import TextArea from '../components/TextArea'
@@ -88,23 +89,40 @@ function TaskPage() {
             transition-all
           "
         >
+          <div className="flex justify-between top-2 right-4 text-slate-400 cursor-default">
           {isEditing ? (
-            hasChanges ? (
+            <>
               <button
                 onClick={handleSave}
-                className="absolute top-2 right-4 text-green-600 hover:text-green-800"
-                title="Salvar alterações"
+                disabled={!hasChanges || !title.trim() || !description.trim()}
+                className={`static top-2 right-4 transition-colors 
+                  ${!hasChanges || !title.trim() || !description.trim()
+                    ? "text-gray-400 cursor-not-allowed"
+                    : "text-green-600 hover:text-green-800"
+                  }`}
+                title={
+                  !title.trim() || !description.trim()
+                    ? "Preencha todos os campos"
+                    : !hasChanges
+                    ? "Sem alterações"
+                    : "Salvar alterações"
+                }
               >
                 <CheckIcon />
               </button>
-            ) : (
+
               <button
-                className="absolute top-2 right-4 text-slate-400 cursor-default"
-                title="Sem alterações"
+                onClick={() => {
+                  setTitle(originalTitle)
+                  setDescription(originalDescription)
+                  setIsEditing(false)
+                }}
+                className="text-red-500 hover:text-red-700"
+                title="Cancelar"
               >
-                <CheckIcon />
+                <CloseIcon />
               </button>
-            )
+            </>
           ) : (
             <button
               onClick={() => setIsEditing(true)}
@@ -114,6 +132,7 @@ function TaskPage() {
               <EditIcon />
             </button>
           )}
+          </div>
 
           <div>
             {isEditing ? (
