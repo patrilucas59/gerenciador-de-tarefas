@@ -3,6 +3,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { ControlledCheckbox } from './CheckBox';
+import TaskTimer from './TaskTimer';
 
 function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
   const navigate = useNavigate();
@@ -17,11 +18,8 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
     scrollbar-thin scrollbar-thumb-slate-500 scrollbar-track-transparent
     hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded-lg transition-all
   `;
-
-  const taskItemClasses = `
-    flex items-center bg-slate-400 text-white p-2 rounded-md w-full cursor-pointer
-    w-[330px] h-[58px] overflow-hidden text-ellipsis whitespace-nowrap
-  `;
+  
+  
 
   return (
     <ul className={listContainerClasses}>
@@ -34,15 +32,17 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
           <li key={task.id} className="flex gap-2">
             <div
               onClick={() => onTaskClick(task.id)}
-              className={taskItemClasses}
+              className="flex items-center justify-between bg-slate-400 text-white p-2 rounded-md w-[330px] h-[58px] cursor-pointer"
               >
-              <ControlledCheckbox 
-                checked={task.isCompleted} 
-                onChange={() => onToggleTask(task.id)}    
-              />
-              <span>
-                {task.title}
-              </span>
+              <div className="flex items-center gap-2 overflow-hidden">
+                <ControlledCheckbox 
+                  checked={task.isCompleted} 
+                  onChange={() => onToggleTask(task.id)}    
+                />
+                <span className="truncate whitespace-nowrap overflow-hidden">{task.title}</span>
+              </div>
+
+              <TaskTimer minutes={task.timerMinutes} />
             </div>
 
             <Button title="Detalhes" onClick={() => handleSeeDetails(task.id)}>

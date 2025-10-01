@@ -30,12 +30,13 @@ function onDeleteTaskClick(taskId) {
   setTasks(newTasks);
 }
 
-function onAddTaskSubmit (title, description) {
+function onAddTaskSubmit (title, description, timerMinutes) {
   const newTask = {
     id: v4(),
     title: title,
     description: description,
     isCompleted: false,
+    timerMinutes,
   }
   setTasks([...tasks, newTask])
 

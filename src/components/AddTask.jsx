@@ -5,18 +5,24 @@ import Input from "./Input"
 function AddTasks({ onAddTaskSubmit }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [timerMinutes, setTimerMinutes] = useState()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!title.trim() || !description.trim()) {
-      toast.warning("Preencha o título e a descrição da tarefa")
+    if (!title.trim() || !description.trim() || !timerMinutes) {
+      toast.warning("Preencha todos os campos da tarefa")
       return
     }
 
-    onAddTaskSubmit(title, description)
+    if (timerMinutes <= 0) {
+      toast.warning("O tempo da tarefa deve ser estipulado")
+    }
+
+    onAddTaskSubmit(title, description, timerMinutes)
     setTitle('')
     setDescription('')
+    setTimerMinutes()
   }
 
   return (
@@ -35,6 +41,16 @@ function AddTasks({ onAddTaskSubmit }) {
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
+
+
+        <Input 
+          type="number"
+          placeholder="Tempo da tarefa (em minutos)"
+          min={1}
+          value={timerMinutes}
+          onChange={(event) => setTimerMinutes(Number(event.target.value))}
+        />
+
         <button 
           type="submit"
           className='bg-slate-500 text-white rounded-md px-4 py-2 font-medium hover:bg-slate-600 transition-colors duration-200'
