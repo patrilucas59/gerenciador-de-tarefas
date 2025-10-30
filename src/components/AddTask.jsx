@@ -15,9 +15,17 @@ function AddTasks({ onAddTaskSubmit }) {
       return
     }
 
-    if (timerMinutes <= 0) {
-      toast.warning("O tempo da tarefa deve ser estipulado")
-    }
+  const minutes = Number(timerMinutes);
+
+  if (isNaN(minutes) || minutes <= 0) {
+    toast.warning("Por favor, insira um número válido de minutos maior que zero.");
+    return;
+  }
+
+  if (minutes > 40) {
+    toast.error("O tempo máximo permitido é de 40 minutos.");
+    return;
+  }
 
     onAddTaskSubmit(title, description, timerMinutes)
     setTitle('')
@@ -35,13 +43,12 @@ function AddTasks({ onAddTaskSubmit }) {
         onChange={(event) => setTitle(event.target.value)}
       />
 
-      <Input 
-        type="text"
-        placeholder="Digite a descrição da tarefa"
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
-
+        <Input 
+          type="text"
+          placeholder="Digite a descrição da tarefa"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
 
         <Input 
           type="number"

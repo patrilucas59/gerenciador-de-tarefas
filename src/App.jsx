@@ -36,7 +36,9 @@ function onAddTaskSubmit (title, description, timerMinutes) {
     title: title,
     description: description,
     isCompleted: false,
+    isDisabled: false,
     timerMinutes,
+    startTime: Date.now(),
   }
   setTasks([...tasks, newTask])
 
@@ -45,7 +47,7 @@ function onAddTaskSubmit (title, description, timerMinutes) {
 const handleToggleTask = (taskId) => {
   setTasks(prevTasks => 
     prevTasks.map(task => 
-      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+      task.id === taskId ? { ...task, isDisabled: !task.isDisabled } : task
     )
   )
 }

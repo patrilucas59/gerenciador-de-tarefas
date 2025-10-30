@@ -18,8 +18,6 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
     scrollbar-thin scrollbar-thumb-slate-500 scrollbar-track-transparent
     hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded-lg transition-all
   `;
-  
-  
 
   return (
     <ul className={listContainerClasses}>
@@ -37,12 +35,20 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick, onToggleTask }) {
               <div className="flex items-center gap-2 overflow-hidden">
                 <ControlledCheckbox 
                   checked={task.isCompleted} 
-                  onChange={() => onToggleTask(task.id)}    
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    if(!task.isDisabled) onToggleTask(task.id)
+                  }}
+                disabled={task.isDisabled}
                 />
                 <span className="truncate whitespace-nowrap overflow-hidden">{task.title}</span>
               </div>
 
-              <TaskTimer minutes={task.timerMinutes} />
+              <TaskTimer 
+                minutes={task.timerMinutes} 
+                startTime={task.startTime} 
+                isPaused={task.isDisabled}
+              />
             </div>
 
             <Button title="Detalhes" onClick={() => handleSeeDetails(task.id)}>
