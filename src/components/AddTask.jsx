@@ -5,7 +5,7 @@ import Input from "./Input"
 function AddTasks({ onAddTaskSubmit }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [timerMinutes, setTimerMinutes] = useState()
+  const [timerMinutes, setTimerMinutes] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -30,7 +30,7 @@ function AddTasks({ onAddTaskSubmit }) {
     onAddTaskSubmit(title, description, timerMinutes)
     setTitle('')
     setDescription('')
-    setTimerMinutes()
+    setTimerMinutes('')
   }
 
   return (
@@ -55,7 +55,7 @@ function AddTasks({ onAddTaskSubmit }) {
           placeholder="Tempo da tarefa (em minutos)"
           min={1}
           value={timerMinutes}
-          onChange={(event) => setTimerMinutes(Number(event.target.value))}
+          onChange={(e) => setTimerMinutes((e.target.value))}
         />
 
         <button 
