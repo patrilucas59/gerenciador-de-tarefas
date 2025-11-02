@@ -56,6 +56,15 @@ function AddTasks({ onAddTaskSubmit }) {
           min={1}
           value={timerMinutes}
           onChange={(e) => setTimerMinutes((e.target.value))}
+          onKeyDown={(e) => {
+            if (['e', 'E', '+', '-'].includes(e.key)) {
+              e.preventDefault();
+            }
+          }}
+          onInput={(e) => {
+            e.target.value = e.targe.value.replace(/[^0-9]/g, '');
+            setTimerMinutes(e.target.value)
+          }}
         />
 
         <button 
