@@ -6,8 +6,8 @@ A simple and functional project of to-do list, build with **React**, **JavaScrip
 
 ## ✨ Features
 
-- Add tasks with title and description;
-- Mark or uncheck tasks as completed
+- Add tasks with title, description and task time;
+- Mark or uncheck tasks as completed;
 - Remove tasks;
 - Edit recently created tasks.
 
@@ -17,18 +17,23 @@ A simple and functional project of to-do list, build with **React**, **JavaScrip
 
 - Template [React] (https://react.dev/)
 - [Vite] (https://vite.dev/)
-- Tailwind (https://tailwindcss.com/)
+- TailwindCSS (https://tailwindcss.com/)
 - [React Router Dom] (https://reactrouter.com/)
 - uuid (https://www.npmjs.com/package/uuid)
 - React-Toastify (https://www.npmjs.com/package/react-toastify)
+- Motion (https://www.npmjs.com/package/framer-motion)
 
 ---
 
 ## 📸 Screenshots
 
-<img width="1920" height="849" alt="screenshot (10)" src="https://github.com/user-attachments/assets/70f01280-7037-4d9e-8cf6-f6e0ffb82389" />
+<img width="1920" height="849" alt="screenshot (10)" src="src/assets/Gerenciador de Tarefas.png" />
 
-<img width="1425" height="706" alt="screenshot (11)" src="https://github.com/user-attachments/assets/a84cfa1f-5c02-4948-afe9-7a6524a260b1" />
+<img width="1425" height="706" alt="screenshot (11)" src="src/assets/Tarefa Criada.png" />
+
+<img width="1425" height="706" alt="screenshot (11)" src="src/assets/Tempo da Tarefa.png" />
+
+<img width="1425" height="706" alt="screenshot (11)" src="src/assets/Detalhes da Tarefa.png" />
 
 ---
 
@@ -44,11 +49,7 @@ git clone https://github.com/patrilucas59/gerenciador-de-tarefas.git
 cd gerenciador-de-tarefas
 
 # Install the dependencies
-yarn install
-# or
 npm install
 
 # Run the development server:
-yarn dev
-# or
 npm run dev
