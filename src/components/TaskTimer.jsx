@@ -1,20 +1,42 @@
 import Countdown from "react-countdown";
+import { motion } from 'framer-motion';
+import { useMemo, useCallback } from "react";
 
 export function TaskTimer({ minutes, startTime }) {
-  const totalTime = minutes * 60 * 1000;
-  const expiryTime = startTime + totalTime;
+  const totalTime = useMemo(() => minutes * 60 * 1000, [minutes]);
+  const expiryTime = useMemo(() => startTime + totalTime, [startTime, totalTime]);
   
-  const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) return <span className="text-white-400">Tempo esgotado</span>;
+  const renderer = useCallback(({ minutes, seconds, completed, total }) => {
+    if (completed) {
+      return (
+      <span className="text-white">
+        Tempo esgotado!
+      </span>
+      );
+    }
+
+    const percent = total / totalTime;
+
+    const statusColor = 
+      percent < 0.1 ? "bg-red-500 text-white"
+      : percent < 0.2 ? "bg-yellow-500 text-black"
+      : "bg-white text-black";
+
     return (
-      <span className="text-black bg-white px-3 py-1 rounded-md">
+      <motion.span
+        animate={{
+          scale: percent < 0.1 ? [1, 1.1, 1]: 1,
+        }}
+        transition={{ duration: 0.5, repeat: percent < 0.1 ? Infinity : 0 }} 
+        className={`${statusColor} px-4 py-2 rounded-xl text-lg`}
+        >
         {String(minutes).padStart(2, "0")}:
         {String(seconds).padStart(2, "0")}
-      </span>
+      </motion.span>
     );
-  };
+  }, [totalTime]);
 
-  return <Countdown date={expiryTime} renderer={renderer} />;
+  return <Countdown date={expiryTime} renderer={renderer} intervalDelay={1000} />;
 
 }
 

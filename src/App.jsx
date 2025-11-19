@@ -53,8 +53,8 @@ const handleToggleTask = (taskId) => {
 }
 
   return (
-    <div className='w-screen h-screen dark:bg-gray-700 white: bg-slate-600 flex justify-center p-6'>
-      <div className='w-[500px] space-y-4'>
+    <div className="min-h-screen w-full bg-slate-600 dark:bg-gray-700 flex justify-center p-6">
+      <div className="w-full max-w-[500px] space-y-4">
         <Title>
           NoteMe - To Do List
         </Title>

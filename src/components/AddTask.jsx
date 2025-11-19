@@ -22,8 +22,8 @@ function AddTasks({ onAddTaskSubmit }) {
     return;
   }
 
-  if (minutes > 40) {
-    toast.error("O tempo máximo permitido é de 40 minutos.");
+  if (minutes > 60) {
+    toast.error("O tempo máximo permitido é de 60 minutos.");
     return;
   }
 
@@ -62,8 +62,8 @@ function AddTasks({ onAddTaskSubmit }) {
             }
           }}
           onInput={(e) => {
-            e.target.value = e.targe.value.replace(/[^0-9]/g, '');
-            setTimerMinutes(e.target.value)
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            setTimerMinutes(e.target.value);
           }}
         />
 

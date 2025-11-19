@@ -69,26 +69,26 @@ function TaskPage() {
   }
 
   return (
-    <div className="h-screen w-screen dark:bg-gray-700 bg-slate-600 p-6 flex justify-center overflow-hidden">
-      <div className="w-[600px] space-y-4">
+    <div className="min-h-screen w-full bg-slate-600 dark:bg-gray-700 flex justify-center p-4">
+      <div className="w-full max-w-[600px] space-y-4">
         <div className="flex justify-center relative mb-6 text-slate-100">
           <button onClick={handleGoBack} className="absolute left-0 top-0 bottom-0" title="Voltar">
             <ArrowBackIcon />
           </button>
           <Title>Detalhes da Tarefa</Title>
         </div>
+          <div
+            className="
+              bg-slate-200 p-4 rounded-md relative
+              space-y-1 min-h-[100px] max-h-[600px]
+              overflow-y-auto transition-all
 
-        <div 
-          className="
-            bg-slate-200 p-4 rounded-md relative 
-            space-y-6 
-            min-h-[100px] max-h-[600px] 
-            overflow-y-auto 
-            scrollbar-thin scrollbar-thumb-slate-500 scrollbar-track-transparent 
-            hover:scrollbar-thumb-slate-600 scrollbar-thumb-rounded-lg 
-            transition-all
-          "
-        >
+              scrollbar-thin scrollbar-thumb-slate-500 
+              hover:scrollbar-thumb-slate-600 
+              scrollbar-track-transparent scrollbar-thumb-rounded-lg
+            "
+          >
+
           <div className="flex justify-between top-2 right-4 text-slate-400 cursor-default">
           {isEditing ? (
             <>
